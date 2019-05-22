@@ -5,6 +5,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="greyish">#fff2f1f2</color>
+    <color name="sinch_purple">#fff2f1f2</color>
 
 
 </resources>
