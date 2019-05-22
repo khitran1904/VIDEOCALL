@@ -17,7 +17,6 @@ public class PlaceCallActivity extends BaseActivity {
 
     private Button mCallButton;
     private EditText mCallName;
-    private Button mvoiceButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +28,6 @@ public class PlaceCallActivity extends BaseActivity {
         mCallButton = (Button) findViewById(R.id.callButton);
         mCallButton.setEnabled(false);
         mCallButton.setOnClickListener(buttonClickListener);
-        mvoiceButton = (Button) findViewById(R.id.buttonvoicecall);
-        mvoiceButton.setEnabled(false);
-        mvoiceButton.setOnClickListener(buttonClickListener1);
 
 
         Button stopButton = (Button) findViewById(R.id.stopButton);
@@ -44,7 +40,7 @@ public class PlaceCallActivity extends BaseActivity {
         TextView userName = (TextView) findViewById(R.id.loggedInName);
         userName.setText(getSinchServiceInterface().getUserName());
         mCallButton.setEnabled(true);
-        mvoiceButton.setEnabled(true);
+
     }
 
     @Override
@@ -96,37 +92,7 @@ public class PlaceCallActivity extends BaseActivity {
         }
     };
 
-    //để thực hiện cuộc gọi đến tên đã nhập
-    private void voicecallButtonClicked() {
-        String userName = mCallName.getText().toString();
-        if (userName.isEmpty()) {
-            Toast.makeText(this, "Please enter a user to call", Toast.LENGTH_LONG).show();
-            return;
-        }
 
-        Call call = getSinchServiceInterface().callUserVideo(userName);
-        String callId = call.getCallId();
-
-        Intent callScreen1 = new Intent(this, VoiceCallActivity.class);
-        callScreen1.putExtra(SinchService.CALL_ID, callId);
-        startActivity(callScreen1);
-    }
-
-    private OnClickListener buttonClickListener1 = new OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.buttonvoicecall:
-                    voicecallButtonClicked();
-                    break;
-
-                case R.id.stopButton:
-                    stopButtonClicked();
-                    break;
-
-            }
-        }
-    };
 
 
 
